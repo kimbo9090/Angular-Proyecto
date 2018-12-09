@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Soft Viajes</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" *ngIf="isLogged" href="addViaje">Añadir Viaje<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <button type="button" *ngIf="!isLogged" (click)="redirectLogin()" class="btn btn-secondary">Iniciar sesión</button>
+      </li>
+      <li class="nav-item">
+          <button type="button" *ngIf="!isLogged" (click)="redirectRegister()" class="btn btn-success">Registrarse</button>
+      </li>
+      <li class="nav-item">
+          <button type="button" (click)="onLogout()" *ngIf="isLogged" class="btn btn-danger">Cerrar sesión</button>
+      </li>
+    </ul>
+  </div>
+</nav>

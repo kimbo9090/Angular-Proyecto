@@ -1,0 +1,66 @@
+<div *ngIf="viajes?.length > 0; else noViajes">
+  <ul *ngFor="let viaje of viajes" class="collection">
+    <li class="collection-item">
+      <a href="#" class="secondary-content">
+        <i *ngIf="editState == false" (click)="editViaje($event,viaje)" class="material-icons">mode_edit</i>
+        <i *ngIf="editState && viajeToEdit.id == viaje.id" (click)="clearState()" class="material-icons">close</i>
+      </a>
+      <strong>{{viaje.pais}}</strong>
+      <br>
+      <blockquote>{{viaje.estrellas}}</blockquote>
+      <br>
+      <span class="my_tag amber">
+        <strong>Ciudad:</strong> {{viaje.ciudad}}</span>
+      <span class="my_tag amber"> <strong>Hotel:</strong>{{viaje.hotel}}</span>
+      <span class="my_tag amber"> <strong>Avion:</strong> {{viaje.avion}}</span>
+      <hr>
+      <div *ngIf="editState && viajeToEdit.id == viaje.id" class="container-updateViaje">
+          <form (ngSubmit)="updateViaje(viaje)"class="form-horizontal">
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="pais">Pais</label>
+                <div class="col-sm-10">
+                  <input [(ngModel)]= "viaje.pais" #pais="ngModel" name="pais"
+                   type="text" class="form-control" id="pais" placeholder="Pais destino">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="ciudad">Ciudad</label>
+                <div class="col-sm-10">
+                  <input [(ngModel)]= "viaje.ciudad" #ciudad="ngModel" name="ciudad"
+                   type="text" class="form-control" id="ciudad" placeholder="Ciudad destino">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="estrellas">Estrellas</label>
+                <div class="col-sm-10">
+                  <input [(ngModel)]= "viaje.estrellas" #estrellas="ngModel" name="estrellas"
+                  type="text" class="form-control" id="estrellas" placeholder="Las estrellas de el hotel">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="hotel">Hotel</label>
+                <div class="col-sm-10">
+                  <input [(ngModel)]= "viaje.hotel" #hotel="ngModel" name="hotel"
+                   type="text" class="form-control" id="hotel" placeholder="Nombre de el hotel">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="avion">avion</label>
+                <div class="col-sm-10">
+                  <input [(ngModel)]= "viaje.avion" #avion="ngModel" name="avion"
+                   type="text" class="form-control" id="avion" placeholder="Nombre de el avion">
+                </div>
+              </div>
+              <div class="form-group">
+              </div>
+              <button (click)="deleteViaje($event,viaje)" class="btn red right">Borrar</button>
+              <button class="btn orange ">Actualizar</button>
+            </form>
+      </div>
+    </li>
+  </ul>
+</div>
+<ng-template #noViajes>
+  <hr>
+  <h5>NO hay viajes</h5>
+</ng-template>
